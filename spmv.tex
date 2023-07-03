@@ -1,0 +1,32 @@
+\begin{lstlisting}[style=cppcode]
+  // Compute y = Ax where A is a sparse matrix
+  // represented by: offsets, colIdx and values
+  void SpMV(...) {
+\end{lstlisting}
+
+\begin{lstlisting}[style=cppcode, backgroundcolor=\color{yellow!15}, firstnumber=last]
+    // for every row of the matrix
+    for (int i = 0; i < N; i++) {
+\end{lstlisting}
+
+\begin{lstlisting}[style=cppcode, backgroundcolor=\color{green!15}, firstnumber=last]
+      y[i] = 0;
+\end{lstlisting}
+
+\begin{lstlisting}[style=cppcode, backgroundcolor=\color{red!15}, firstnumber=last]
+      // for every non-zero column of row i
+      for (int j = offsets[i]; j < offsets[i+1]; j++)
+\end{lstlisting}
+
+\begin{lstlisting}[style=cppcode, backgroundcolor=\color{green!15}, firstnumber=last]
+        #pragma dpref sliceOn(j)
+        y[i] += values[j] * x[colIdx[j]];
+\end{lstlisting}
+
+\begin{lstlisting}[style=cppcode, backgroundcolor=\color{yellow!15}, firstnumber=last]
+    }
+\end{lstlisting}
+
+\begin{lstlisting}[style=cppcode, firstnumber=last]
+  }
+\end{lstlisting}

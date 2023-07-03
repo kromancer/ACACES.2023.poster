@@ -1,0 +1,21 @@
+\begin{lstlisting}[style=cppcode]
+  void func(int *A, int B) {
+\end{lstlisting}
+
+\begin{lstlisting}[style=cppcode, backgroundcolor=\color{green!15}, firstnumber=last]
+    int C = B % 5; // data dependency of line 6
+    if (C == 0)    // control dependency of line 6
+\end{lstlisting}
+
+\begin{lstlisting}[style=cppcode, firstnumber=last]
+      B = 0;
+    else
+\end{lstlisting}
+
+\begin{lstlisting}[style=cppcode, backgroundcolor=\color{green!15}, firstnumber=last]
+      *A = C;      // "pre-live"
+\end{lstlisting}
+
+\begin{lstlisting}[style=cppcode, firstnumber=last]
+  }
+\end{lstlisting}
